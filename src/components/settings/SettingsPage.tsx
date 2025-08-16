@@ -42,6 +42,32 @@ export default function SettingsPage({ userName, onClose }: SettingsPageProps) {
 
   return (
     <div className="fixed inset-0 bg-gray-50 z-50 overflow-hidden flex flex-col">
+        <button 
+          onClick={() => setShowAgentRegistration(true)}
+          className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-indigo-300"
+        >
+          <div className="flex items-center space-x-4">
+            <div className="p-3 rounded-xl bg-indigo-100">
+              <svg
+                className="h-6 w-6 text-indigo-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div className="flex-1 text-left">
+              <h3 className="font-semibold text-gray-900">Agent Kalpé</h3>
+              <p className="text-sm text-gray-500">Gérer mon compte agent</p>
+            </div>
+          </div>
+        </button>
       {/* Header */}
       <header className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
