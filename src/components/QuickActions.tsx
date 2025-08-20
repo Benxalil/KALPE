@@ -30,6 +30,7 @@ const actions = [
   { name: 'Tontine', icon: Users },
   { name: 'Coffre', icon: Lock },
   { name: 'Agent', icon: UserCheck },
+  { name: 'Agent', icon: UserCheck },
 ];
 
 interface QuickActionsProps {
