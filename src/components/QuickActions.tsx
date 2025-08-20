@@ -111,12 +111,6 @@ export default function QuickActions({ onNavigate }: QuickActionsProps) {
   }, []);
 
   const handleActionClick = (actionName: string) => {
-    // Check if user is trying to access Agent section
-    if (actionName === 'Agent' && (!isAgent || !hasValidatedAgentRequest)) {
-      alert('Vous devez être un agent Kalpé validé pour accéder à cette section. Faites une demande dans les paramètres.');
-      return;
-    }
-
     // Navigate to the corresponding page
     const pageMap: { [key: string]: string } = {
       'Transfert': 'transfert',
