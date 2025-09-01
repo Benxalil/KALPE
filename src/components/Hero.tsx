@@ -30,7 +30,7 @@ export default function Hero() {
         <div className="flex items-start justify-between">
           {/* QR Code - Left Side */}
           <div className="bg-white rounded-2xl p-4 shadow-lg flex flex-col items-center">
-            <div className="w-28 h-28 bg-white rounded-lg flex items-center justify-center mb-3">
+            <div className="w-28 h-28 bg-white rounded-lg flex items-center justify-center">
               <svg className="w-24 h-24" viewBox="0 0 100 100">
                 {/* QR Code pattern */}
                 <rect x="0" y="0" width="100" height="100" fill="white"/>
@@ -80,7 +80,8 @@ export default function Hero() {
               </svg>
             </div>
             
-            {/* Camera Icon */}
+            {/* Camera Icon - Outside QR field but inside card */}
+            <div className="mt-4">
             <button 
               className="p-2 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors"
               onClick={() => {
@@ -109,6 +110,7 @@ export default function Hero() {
                 />
               </svg>
             </button>
+            </div>
           </div>
 
           {/* Account Info - Right Side */}
