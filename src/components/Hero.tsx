@@ -3,6 +3,7 @@ import { Eye, EyeOff } from 'lucide-react';
 
 export default function Hero() {
   const [showBalance, setShowBalance] = useState(true);
+  const [isScanning, setIsScanning] = useState<'qr' | null>(null);
   const balance = 15000;
 
   const toggleBalance = () => {
@@ -30,7 +31,7 @@ export default function Hero() {
         <div className="flex items-start justify-between">
           {/* QR Code - Left Side */}
           <div className="bg-white rounded-2xl p-4 shadow-lg flex flex-col items-center">
-            <div className="w-28 h-28 bg-white rounded-lg flex items-center justify-center">
+            <div className="w-28 h-28 bg-white rounded-lg flex items-center justify-center mb-3">
               <svg className="w-24 h-24" viewBox="0 0 100 100">
                 {/* QR Code pattern */}
                 <rect x="0" y="0" width="100" height="100" fill="white"/>
@@ -80,13 +81,12 @@ export default function Hero() {
               </svg>
             </div>
             
-            {/* Camera Icon - Outside QR field but inside card */}
-            <div className="mt-4">
+            {/* Camera Icon - Separate from QR code */}
             <button 
               className="p-2 bg-indigo-100 hover:bg-indigo-200 rounded-full transition-colors"
               onClick={() => {
-                // TODO: Implement QR scanner functionality
-                console.log('Opening QR scanner...');
+                // Open QR scanner for scanning other Kalpé cards
+                setIsScanning('qr');
               }}
               aria-label="Scanner un QR code"
             >
@@ -110,7 +110,6 @@ export default function Hero() {
                 />
               </svg>
             </button>
-            </div>
           </div>
 
           {/* Account Info - Right Side */}
@@ -147,6 +146,34 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* QR Scanner Modal */}
+      {isScanning === 'qr' && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
+          <div className="relative w-64 h-64">
+            <div className="absolute inset-0 border-2 border-white/50 rounded-lg" />
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full h-0.5 bg-indigo-500 animate-scan" />
+            </div>
+            
+            {/* Corner Markers */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-indigo-500" />
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-indigo-500" />
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-indigo-500" />
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-indigo-500" />
+            
+            <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 text-center text-white">
+              <p className="mb-4">Scannez le QR code d'une autre carte Kalpé</p>
+              <button
+                onClick={() => setIsScanning(null)}
+                className="px-6 py-2 bg-white rounded-full text-gray-900 font-medium hover:bg-gray-100 transition-colors"
+              >
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
