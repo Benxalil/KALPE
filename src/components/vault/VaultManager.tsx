@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, PiggyBank, Calendar, Target, ArrowUpRight, Clock, Lock, Unlock, ArrowLeft } from 'lucide-react';
+import { X, PiggyBank, Calendar, Target, ArrowUpRight, Clock, Lock, Clock as Unlock, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Vault, VaultTransaction } from '../moneypot/types';

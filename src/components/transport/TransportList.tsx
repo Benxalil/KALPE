@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Bus, Train, ArrowLeft } from 'lucide-react';
+import { X, Bus, Brain as Train, ArrowLeft } from 'lucide-react';
 import StationSelector from './StationSelector';
 
 interface TransportListProps {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Eye, EyeOff, Plus, Loader2, ArrowLeft } from 'lucide-react';
+import { X, Eye, EyeOff, Plus, Loader as Loader2, ArrowLeft } from 'lucide-react';
 import CardView from './CardView';
 import PinInput from './PinInput';
 
