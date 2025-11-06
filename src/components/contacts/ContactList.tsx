@@ -59,9 +59,9 @@ export default function ContactList({ onNavigateBack }: ContactListProps) {
            className="p-2 hover:bg-gray-100 rounded-full transition-all duration-200 group flex items-center justify-center"
             aria-label="Retour à l'accueil"
           >
-           <ArrowLeft className="h-5 w-5 text-gray-700 group-hover:text-indigo-600 transition-colors" />
+           <ArrowLeft className="h-6 w-6 text-gray-900 group-hover:text-indigo-600 transition-colors" />
           </button>
-         <h2 className="text-xl font-semibold text-gray-900">Contacts</h2>
+         <h2 className="text-xl font-semibold text-gray-900 flex-1 text-center">Contacts</h2>
           <div className="w-10"></div> {/* Spacer for alignment */}
         </div>
         <div className="relative">

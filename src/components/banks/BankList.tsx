@@ -24,9 +24,9 @@ export default function BankList({ onNavigateBack }: BankListProps) {
             className="p-2 hover:bg-gray-100 rounded-full transition-all duration-200 group"
             aria-label="Retour à l'accueil"
           >
-            <ArrowLeft className="h-6 w-6 text-gray-700 group-hover:text-indigo-600 transition-colors" />
+            <ArrowLeft className="h-6 w-6 text-gray-900 group-hover:text-indigo-600 transition-colors" />
           </button>
-          <h1 className="text-xl font-semibold ml-4">
+          <h1 className="text-xl font-semibold text-gray-900 flex-1 text-center">
             Lier votre banque
           </h1>
         </div>

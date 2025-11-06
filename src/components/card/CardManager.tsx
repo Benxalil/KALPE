@@ -55,9 +55,9 @@ export default function CardManager({ onNavigateBack }: CardManagerProps) {
               className="p-2 hover:bg-gray-100 rounded-full transition-all duration-200 group"
               aria-label="Retour à l'accueil"
             >
-              <ArrowLeft className="h-6 w-6 text-gray-700 group-hover:text-indigo-600 transition-colors" />
+              <ArrowLeft className="h-6 w-6 text-gray-900 group-hover:text-indigo-600 transition-colors" />
             </button>
-            <h2 className="text-xl font-semibold">Activer votre carte Kalpé</h2>
+            <h2 className="text-xl font-semibold text-gray-900 flex-1 text-center">Activer votre carte Kalpé</h2>
             <button
               onClick={handleClose}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"

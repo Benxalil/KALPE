@@ -53,12 +53,10 @@ export default function TontineList({ onNavigateBack }: TontineListProps) {
           <div className="mb-6">
             <button
               onClick={onNavigateBack}
-              className="flex items-center text-indigo-600 hover:text-indigo-700 transition-colors"
+              className="p-2 hover:bg-gray-100 rounded-full transition-all duration-200 group"
+              aria-label="Retour à l'accueil"
             >
-              <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Retour
+              <ArrowLeft className="h-6 w-6 text-gray-900 group-hover:text-indigo-600 transition-colors" />
             </button>
           </div>
         )}

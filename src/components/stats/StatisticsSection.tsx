@@ -269,7 +269,7 @@ export default function StatisticsSection({ onNavigateBack }: StatisticsSectionP
               className="p-2 hover:bg-gray-100 rounded-full transition-all duration-200 group"
               aria-label="Retour à l'accueil"
             >
-              <ArrowLeft className="h-6 w-6 text-gray-700 group-hover:text-indigo-600 transition-colors" />
+              <ArrowLeft className="h-6 w-6 text-gray-900 group-hover:text-indigo-600 transition-colors" />
             </button>
             <div className="flex items-center space-x-3">
           <button
@@ -277,14 +277,14 @@ export default function StatisticsSection({ onNavigateBack }: StatisticsSectionP
             className="p-2 hover:bg-gray-100 rounded-full transition-all duration-200 group"
             aria-label="Retour"
           >
-            <ArrowLeft className="h-5 w-5 text-gray-700 group-hover:text-indigo-600 transition-colors" />
+            <ArrowLeft className="h-6 w-6 text-gray-900 group-hover:text-indigo-600 transition-colors" />
           </button>
               <div className="p-2 rounded-xl bg-indigo-100">
                 <svg className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Mes Statistiques</h1>
+              <h1 className="text-2xl font-bold text-gray-900 flex-1 text-center">Mes Statistiques</h1>
             </div>
           </div>
         </div>

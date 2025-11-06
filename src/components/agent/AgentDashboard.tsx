@@ -167,9 +167,7 @@ export default function AgentDashboard({ onNavigateBack }: AgentDashboardProps) 
           {error}
           <button 
             onClick={() => setError(null)}
-            className="ml-2 text-red-800 hover:text-red-900"
-          >
-            ✕
+            <ArrowLeft className="h-6 w-6 text-gray-900 group-hover:text-indigo-600 transition-colors" />
           </button>
         </div>
       )}
