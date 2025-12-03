@@ -45,7 +45,7 @@ export function useVaults() {
 
   useEffect(() => {
     fetchVaults();
-  }, [fetchVaults]);
+  }, []);
 
   const createVault = useCallback(async (input: CreateVaultInput) => {
     try {
@@ -171,9 +171,12 @@ export function useVaults() {
 
       if (transError) throw transError;
 
+      const currentVault = vaults.find(v => v.id === vaultId);
+      if (!currentVault) throw new Error('Vault not found');
+
       const newBalance = type === 'deposit'
-        ? vaults.find(v => v.id === vaultId)!.balance + amount
-        : vaults.find(v => v.id === vaultId)!.balance - amount;
+        ? currentVault.balance + amount
+        : currentVault.balance - amount;
 
       const { error: updateError } = await supabase
         .from('vaults')

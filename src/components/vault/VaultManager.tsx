@@ -30,6 +30,9 @@ export default function VaultManager({ onNavigateBack }: VaultManagerProps) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingVault, setEditingVault] = useState<Vault | null>(null);
   const [deleteConfirmVault, setDeleteConfirmVault] = useState<Vault | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (selectedVault) {
@@ -49,23 +52,47 @@ export default function VaultManager({ onNavigateBack }: VaultManagerProps) {
   };
 
   const handleCreateVault = async (input: any) => {
-    await createVault(input);
-    setShowCreateModal(false);
+    try {
+      setIsCreating(true);
+      await createVault(input);
+      setShowCreateModal(false);
+    } catch (err) {
+      console.error('Error creating vault:', err);
+    } finally {
+      setIsCreating(false);
+    }
   };
 
   const handleUpdateVault = async (input: any) => {
     if (editingVault) {
-      await updateVault(editingVault.id, input);
-      setSelectedVault(null);
-      setEditingVault(null);
-      setShowEditModal(false);
+      try {
+        setIsUpdating(true);
+        await updateVault(editingVault.id, input);
+        const updated = vaults.find(v => v.id === editingVault.id);
+        if (updated) {
+          setSelectedVault(updated);
+        }
+        setEditingVault(null);
+        setShowEditModal(false);
+      } catch (err) {
+        console.error('Error updating vault:', err);
+      } finally {
+        setIsUpdating(false);
+      }
     }
   };
 
   const handleDeleteVault = async (vault: Vault) => {
-    await deleteVault(vault.id);
-    setSelectedVault(null);
-    setDeleteConfirmVault(null);
+    try {
+      setIsDeleting(true);
+      await deleteVault(vault.id);
+      setSelectedVault(null);
+      setDeleteConfirmVault(null);
+    } catch (err) {
+      console.error('Error deleting vault:', err);
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   const handleDeposit = async (amount: number, description?: string) => {
@@ -193,6 +220,7 @@ export default function VaultManager({ onNavigateBack }: VaultManagerProps) {
         <CreateVaultModal
           onClose={() => setShowCreateModal(false)}
           onSubmit={handleCreateVault}
+          isLoading={isCreating}
         />
       )}
 
@@ -204,6 +232,7 @@ export default function VaultManager({ onNavigateBack }: VaultManagerProps) {
             setEditingVault(null);
           }}
           onSubmit={handleUpdateVault}
+          isLoading={isUpdating}
         />
       )}
 
@@ -217,15 +246,24 @@ export default function VaultManager({ onNavigateBack }: VaultManagerProps) {
             <div className="flex gap-3">
               <button
                 onClick={() => setDeleteConfirmVault(null)}
-                className="flex-1 px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors"
+                disabled={isDeleting}
+                className="flex-1 px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
               >
                 Annuler
               </button>
               <button
                 onClick={() => handleDeleteVault(deleteConfirmVault)}
-                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                disabled={isDeleting}
+                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 font-medium"
               >
-                Supprimer
+                {isDeleting ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Suppression...
+                  </span>
+                ) : (
+                  'Supprimer'
+                )}
               </button>
             </div>
           </div>

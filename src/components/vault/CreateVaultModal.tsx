@@ -28,6 +28,11 @@ export default function CreateVaultModal({ onClose, onSubmit, isLoading }: Creat
       return;
     }
 
+    if (formData.targetAmount && parseFloat(formData.targetAmount) <= 0) {
+      setError('Le montant cible doit être supérieur à 0');
+      return;
+    }
+
     try {
       await onSubmit({
         name: formData.name,
@@ -36,7 +41,6 @@ export default function CreateVaultModal({ onClose, onSubmit, isLoading }: Creat
         color: formData.color,
         icon: formData.icon
       });
-      onClose();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erreur lors de la création');
     }
@@ -49,7 +53,8 @@ export default function CreateVaultModal({ onClose, onSubmit, isLoading }: Creat
           <h2 className="text-2xl font-bold">Créer un Coffre</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            disabled={isLoading}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
           >
             <X className="h-6 w-6" />
           </button>
@@ -146,16 +151,24 @@ export default function CreateVaultModal({ onClose, onSubmit, isLoading }: Creat
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors"
+              disabled={isLoading}
+              className="flex-1 px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
             >
               Annuler
             </button>
             <button
               type="submit"
-              disabled={isLoading}
-              className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors"
+              disabled={isLoading || !formData.name.trim()}
+              className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
             >
-              {isLoading ? 'Création...' : 'Créer'}
+              {isLoading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Création...
+                </span>
+              ) : (
+                'Créer'
+              )}
             </button>
           </div>
         </form>
