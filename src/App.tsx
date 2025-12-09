@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useAuth } from './contexts/AuthContext';
+import AuthPage from './pages/AuthPage';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import QRCodeSection from './components/QRCodeSection';
@@ -23,8 +25,21 @@ import { TransactionProvider } from './contexts/TransactionContext';
 type PageType = 'home' | 'transfert' | 'credit' | 'facture' | 'paiement' | 'banque' | 'emoney' | 'carte' | 'transport' | 'cagnotte' | 'cadeaux' | 'tontine' | 'coffre' | 'statistiques' | 'agent';
 
 function App() {
+  const { user, loading } = useAuth();
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [navigationHistory, setNavigationHistory] = useState<PageType[]>(['home']);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <AuthPage />;
+  }
 
   const navigateToPage = (page: PageType) => {
     setCurrentPage(page);
